@@ -1,0 +1,11 @@
+language: go
+
+go:
+  - 1.8.x
+  - 1.9.x
+
+install:
+  - go get -d -v -t ./... && go build -v ./... && git clean -f -d
+
+after_success:
+  - test -n "$TRAVIS_TAG" && curl -sL https://git.io/goreleaser | bash
